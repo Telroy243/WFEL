@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WFEL | Woodfrom Ergonomic Lab</title>
+    <meta name="description" content="Woodfrom Ergonomic Lab (WFEL) - L'ingénierie de la posture au service de la performance. Mobilier ergonomique premium conçu à Goma, RDC.">
+    <meta property="og:title" content="WFEL | Woodfrom Ergonomic Lab">
+    <meta property="og:description" content="Découvrez nos solutions ergonomiques et institutionnelles conçues par WFEL.">
+    <meta name="theme-color" content="#f5f1e8">
+
+    <style>
+        :root{
+            --bg:#f5f1e8;
+            --bg-soft:#fbf8f2;
+            --card:#ffffff;
+            --card-2:#f7f3ec;
+            --text:#1f1f1f;
+            --muted:#5f5f5f;
+            --gold:#b8894e;
+            --gold-dark:#8c6431;
+            --border:rgba(0,0,0,.08);
+            --shadow:0 18px 40px rgba(0,0,0,.08);
+            --success:#1b8f4b;
+            --danger:#d93025;
+        }
+
+        html{
+            scroll-behavior:smooth;
+        }
+
+        *{
+            box-sizing:border-box;
+        }
+
+        body{
+            margin:0;
+            font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+            background:
+                radial-gradient(circle at top, rgba(184,137,78,.12), transparent 35%),
+                linear-gradient(180deg, #ffffff 0%, var(--bg) 45%, #f7f2e9 100%);
+            color:var(--text);
+            overflow-x:hidden;
+            line-height:1.7;
+            -webkit-font-smoothing:antialiased;
+        }
+
+        a{
+            color:inherit;
+        }
+
+        img, video{
+            max-width:100%;
+            display:block;
+        }
+
+        .container{
+            width:min(1200px, calc(100% - 40px));
+            margin:0 auto;
+        }
+
+        .oswald, h1, h2, h3, h4{
+            font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+            text-transform:uppercase;
+            letter-spacing:1.5px;
+        }
+
+        #header{
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            z-index:1000;
+            transition:all .3s ease;
+            padding:18px 0;
+            background:rgba(255,255,255,.7);
+            backdrop-filter:blur(16px);
+            border-bottom:1px solid transparent;
+        }
+
+        #header.scrolled{
+            background:rgba(255,255,255,.92);
+            border-bottom:1px solid var(--border);
+            box-shadow:0 8px 30px rgba(0,0,0,.05);
+        }
+
+        .nav{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:20px;
+        }
+
+        .header-brand{
+            display:flex;
+            align-items:center;
+            gap:14px;
+            text-decoration:none;
+            min-width:max-content;
+        }
+
+        .logo-img{
+            width:54px;
+            height:54px;
+            object-fit:contain;
+            border-radius:50%;
+            background:#fff;
+            box-shadow:0 8px 20px rgba(0,0,0,.08);
+            border:1px solid var(--border);
+        }
+
+        .brand-name{
+            font-weight:800;
+            text-transform:uppercase;
+            letter-spacing:1.6px;
+            font-size:.92rem;
+            line-height:1.1;
+        }
+
+        .brand-name span{
+            display:block;
+            margin-top:4px;
+            font-size:.68rem;
+            letter-spacing:2.8px;
+            color:var(--gold);
+        }
+
+        .nav-links{
+            display:flex;
+            align-items:center;
+            gap:28px;
+        }
+
+        .nav-links a{
+            text-decoration:none;
+            color:var(--muted);
+            font-weight:700;
+            font-size:.84rem;
+            text-transform:uppercase;
+            letter-spacing:1px;
+            transition:all .25s ease;
+        }
+
+        .nav-links a:hover{
+            color:var(--gold-dark);
+        }
+
+        .menu-btn{
+            display:none;
+            flex-direction:column;
+            justify-content:space-between;
+            width:30px;
+            height:20px;
+            cursor:pointer;
+            z-index:1001;
+        }
+
+        .menu-btn span{
+            width:100%;
+            height:2px;
+            background:var(--text);
+            transition:all .25s ease;
+        }
+
+        .menu-btn.open span:nth-child(1){
+            transform:rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-btn.open span:nth-child(2){
+            opacity:0;
+        }
+
+        .menu-btn.open span:nth-child(3){
+            transform:rotate(-45deg) translate(7px, -8px);
+        }
+
+        .hero{
+            min-height:100vh;
+            display:flex;
+            align-items:center;
+            padding:128px 0 84px;
+            position:relative;
+            background:
+                linear-gradient(rgba(255,255,255,.70), rgba(255,255,255,.82)),
+                url('assets/images/wood-texture-bg.jpg') center/cover;
+            border-bottom:1px solid var(--border);
+        }
+
+        .hero-content{
+            animation:fadeInUp 1s ease forwards;
+            opacity:0;
+            transform:translateY(22px);
+        }
+
+        @keyframes fadeInUp{
+            to{ opacity:1; transform:translateY(0); }
+        }
+
+        .brand-identity{
+            margin-bottom:28px;
+            border-left:4px solid var(--gold);
+            padding-left:18px;
+        }
+
+        .brand-title{
+            margin:0 0 8px 0;
+            font-size:.95rem;
+            letter-spacing:4px;
+            color:var(--gold-dark);
+            font-weight:800;
+        }
+
+        .brand-founder{
+            margin:0 0 6px 0;
+            font-size:.92rem;
+            color:var(--muted);
+        }
+
+        .brand-slogan{
+            margin:0;
+            font-size:.82rem;
+            letter-spacing:2px;
+            color:var(--text);
+            font-weight:700;
+        }
+
+        .hero-main-title{
+            font-size:clamp(2rem, 5.8vw, 4.25rem);
+            line-height:1.03;
+            margin:0 0 18px 0;
+            max-width:980px;
+            color:var(--text);
+        }
+
+        .hero-concept{
+            font-size:1.04rem;
+            color:var(--muted);
+            max-width:760px;
+            margin:0 0 28px 0;
+            line-height:1.8;
+        }
+
+        .hero-tech-points{
+            display:flex;
+            flex-direction:column;
+            gap:15px;
+            margin-bottom:28px;
+        }
+
+        .tech-point{
+            display:flex;
+            align-items:flex-start;
+            gap:14px;
+            background:rgba(184,137,78,.06);
+            border:1px solid var(--border);
+            border-radius:12px;
+            padding:16px 18px;
+            max-width:760px;
+        }
+
+        .tp-icon{
+            font-size:1.55rem;
+            flex-shrink:0;
+        }
+
+        .tech-point strong{
+            display:block;
+            color:var(--gold-dark);
+            margin-bottom:4px;
+            font-size:.89rem;
+            letter-spacing:1px;
+            text-transform:uppercase;
+        }
+
+        .tech-point p{
+            margin:0;
+            color:var(--muted);
+            font-size:.94rem;
+        }
+
+        .hero-formation{
+            background:var(--card);
+            border:1px solid var(--border);
+            border-left:4px solid var(--gold);
+            padding:16px 18px;
+            border-radius:12px;
+            max-width:760px;
+            margin-bottom:28px;
+            box-shadow:var(--shadow);
+        }
+
+        .formation-badge{
+            display:inline-block;
+            background:var(--gold);
+            color:#fff;
+            font-size:.7rem;
+            font-weight:800;
+            letter-spacing:2px;
+            padding:4px 12px;
+            border-radius:999px;
+            margin-bottom:10px;
+            text-transform:uppercase;
+        }
+
+        .hero-formation p{
+            margin:0;
+            color:var(--muted);
+            font-size:.94rem;
+        }
+
+        .hero-ctas{
+            display:flex;
+            gap:14px;
+            flex-wrap:wrap;
+        }
+
+        .btn{
+            display:inline-block;
+            padding:17px 30px;
+            background:var(--gold);
+            color:#fff;
+            text-decoration:none;
+            font-weight:800;
+            letter-spacing:1px;
+            text-transform:uppercase;
+            font-size:.82rem;
+            border-radius:10px;
+            transition:all .25s ease;
+            border:1px solid var(--gold);
+            box-shadow:0 10px 20px rgba(184,137,78,.18);
+        }
+
+        .btn:hover{
+            background:transparent;
+            color:var(--gold-dark);
+            transform:translateY(-3px);
+        }
+
+        .btn-outline{
+            background:transparent;
+            color:var(--gold-dark);
+        }
+
+        .btn-outline:hover{
+            background:var(--gold);
+            color:#fff;
+        }
+
+        .section-pad{
+            padding:76px 0;
+        }
+
+        .section-pad-lg{
+            padding:96px 0;
+        }
+
+        .border-top-glass{
+            border-top:1px solid var(--border);
+        }
+
+        .section-dark{
+            background:rgba(255,255,255,.55);
+        }
+
+        .section-header{
+            text-align:center;
+            margin-bottom:48px;
+        }
+
+        .section-header p{
+            color:var(--muted);
+        }
+
+        .gallery-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+            gap:34px;
+            margin:54px 0 0;
+        }
+
+        .gallery-item{
+            background:var(--card);
+            border-radius:16px;
+            overflow:hidden;
+            border:1px solid var(--border);
+            box-shadow:var(--shadow);
+            transition:all .25s ease;
+        }
+
+        .gallery-item:hover{
+            transform:translateY(-8px);
+        }
+
+        .gallery-item img{
+            width:100%;
+            height:320px;
+            object-fit:cover;
+        }
+
+        .gallery-overlay{
+            padding:18px 18px 20px;
+            text-align:center;
+            background:linear-gradient(180deg, #fff, #faf7f1);
+            border-top:1px solid var(--border);
+        }
+
+        .gallery-overlay span{
+            color:var(--gold-dark);
+            font-size:.88rem;
+            font-weight:800;
+            letter-spacing:2px;
+        }
+
+        .grid-expertise, .grid-cards{
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+            gap:28px;
+            margin-top:52px;
+        }
+
+        .expertise-card, .inst-card{
+            background:var(--card);
+            padding:36px;
+            border-radius:16px;
+            border:1px solid var(--border);
+            box-shadow:var(--shadow);
+            transition:all .25s ease;
+        }
+
+        .expertise-card:hover, .inst-card:hover{
+            transform:translateY(-8px);
+            border-color:rgba(184,137,78,.35);
+        }
+
+        .expertise-icon{
+            font-size:2.4rem;
+            margin-bottom:18px;
+            display:block;
+        }
+
+        .vision-block{
+            margin-top:44px;
+            background:linear-gradient(180deg, #fff, #faf7f1);
+            padding:34px;
+            border-radius:16px;
+            border-left:5px solid var(--gold);
+            box-shadow:var(--shadow);
+        }
+
+        .vision-block h3{
+            margin:0 0 10px 0;
+        }
+
+        .inst-img{
+            height:150px;
+            border-radius:12px;
+            margin-bottom:18px;
+            border:1px solid var(--border);
+        }
+
+        .inst-img-1{ background:linear-gradient(135deg,#ece7de,#d8cbb8); }
+        .inst-img-2{ background:linear-gradient(135deg,#e8d1ac,#d7b67d); }
+        .inst-img-3{ background:linear-gradient(135deg,#d9d9d9,#bfbfbf); }
+
+        .devis-block{
+            margin-top:72px;
+            text-align:center;
+            background:linear-gradient(180deg, #fff, #fbf8f2);
+            padding:44px;
+            border-radius:18px;
+            border:1px solid var(--border);
+            box-shadow:var(--shadow);
+        }
+
+        .devis-block h2{
+            margin:0 0 10px 0;
+        }
+
+        .product-hero-tag{
+            text-align:center;
+            margin-bottom:36px;
+        }
+
+        .product-hero-tag span{
+            display:inline-block;
+            font-size:clamp(1rem, 2.8vw, 1.45rem);
+            letter-spacing:2px;
+            color:var(--gold-dark);
+            text-transform:uppercase;
+            border:1px solid rgba(184,137,78,.3);
+            padding:14px 22px;
+            border-radius:999px;
+            background:#fff;
+            box-shadow:var(--shadow);
+        }
+
+        .product-sheet{
+            display:grid;
+            grid-template-columns:1.2fr 1fr;
+            gap:42px;
+            background:var(--card);
+            padding:42px;
+            border-radius:18px;
+            border:1px solid var(--border);
+            box-shadow:var(--shadow);
+        }
+
+        .product-preview{
+            height:430px;
+            overflow:hidden;
+            border-radius:16px;
+            border:1px solid var(--border);
+            background:#fff;
+        }
+
+        .product-preview img{
+            width:100%;
+            height:100%;
+            object-fit:cover;
+        }
+
+        .product-label{
+            color:var(--gold-dark);
+            font-weight:800;
+            letter-spacing:2px;
+            font-size:.78rem;
+        }
+
+        .product-name{
+            font-size:2.1rem;
+            margin:10px 0 16px;
+            color:var(--text);
+        }
+
+        .specs-title{
+            margin-top:26px;
+            border-bottom:1px solid rgba(184,137,78,.45);
+            padding-bottom:10px;
+        }
+
+        .specs-list{
+            list-style:none;
+            margin:34px 0;
+            padding:0;
+        }
+
+        .specs-list li{
+            display:flex;
+            justify-content:space-between;
+            gap:16px;
+            padding:13px 0;
+            border-bottom:1px solid var(--border);
+            font-size:.95rem;
+        }
+
+        .specs-list li span:first-child{
+            color:var(--muted);
+            font-weight:600;
+        }
+
+        .b2b-block{
+            margin-top:28px;
+            background:rgba(184,137,78,.06);
+            border:1px solid rgba(184,137,78,.18);
+            border-radius:14px;
+            padding:22px;
+        }
+
+        .b2b-title{
+            font-size:.88rem;
+            color:var(--gold-dark);
+            margin:0 0 12px 0;
+        }
+
+        .b2b-list{
+            list-style:none;
+            color:var(--muted);
+            line-height:2;
+            font-size:.95rem;
+            margin:0;
+            padding:0;
+        }
+
+        .b2b-quote{
+            font-style:italic;
+            color:var(--gold-dark);
+            font-size:.92rem;
+            border-top:1px solid var(--border);
+            padding-top:12px;
+            margin:12px 0 0 0;
+        }
+
+        .btn-wa{
+            display:block;
+            text-align:center;
+            margin-top:22px;
+            background:#25D366;
+            border-color:#25D366;
+            color:#fff;
+        }
+
+        .btn-wa:hover{
+            background:#1fa957;
+            border-color:#1fa957;
+            color:#fff;
+        }
+
+        .wa-sub-note{
+            color:var(--muted);
+            font-size:.85rem;
+            margin-top:12px;
+            text-align:center;
+            line-height:1.55;
+        }
+
+        .localisation-band{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:12px;
+            margin-top:52px;
+            padding:18px 24px;
+            background:#fff;
+            border:1px solid var(--border);
+            border-radius:14px;
+            font-size:.85rem;
+            letter-spacing:2px;
+            color:var(--muted);
+            text-transform:uppercase;
+            box-shadow:var(--shadow);
+        }
+
+        .contact-header{
+            text-align:center;
+            margin-bottom:42px;
+        }
+
+        .contact-sub{
+            color:var(--muted);
+            margin:10px 0 8px;
+        }
+
+        .contact-email-link{
+            display:inline-block;
+            color:var(--gold-dark);
+            font-family:inherit;
+            font-size:1.05rem;
+            letter-spacing:1px;
+            text-decoration:none;
+            border-bottom:1px solid var(--gold-dark);
+        }
+
+        .contact-form{
+            max-width:760px;
+            margin:0 auto;
+            background:#fff;
+            padding:34px;
+            border-radius:18px;
+            border:1px solid var(--border);
+            box-shadow:var(--shadow);
+        }
+
+        .form-group{
+            margin-bottom:22px;
+        }
+
+        .form-group label{
+            display:block;
+            font-size:.8rem;
+            letter-spacing:1px;
+            text-transform:uppercase;
+            color:var(--muted);
+            margin-bottom:8px;
+            font-weight:700;
+        }
+
+        .req{
+            color:var(--gold-dark);
+        }
+
+        .form-group input,
+        .form-group textarea{
+            width:100%;
+            background:#fbfaf7;
+            border:1px solid rgba(0,0,0,.12);
+            color:var(--text);
+            padding:15px 16px;
+            border-radius:12px;
+            font-family:inherit;
+            font-size:.95rem;
+            transition:all .25s ease;
+            outline:none;
+            resize:vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus{
+            border-color:var(--gold);
+            box-shadow:0 0 0 3px rgba(184,137,78,.15);
+        }
+
+        .form-group input.error,
+        .form-group textarea.error{
+            border-color:var(--danger);
+            box-shadow:0 0 0 3px rgba(217,48,37,.14);
+        }
+
+        .btn-submit{
+            width:100%;
+            margin-top:8px;
+            font-size:.9rem;
+        }
+
+        .form-success{
+            background:rgba(27,143,75,.08);
+            border:1px solid rgba(27,143,75,.35);
+            color:var(--success);
+            padding:16px 18px;
+            border-radius:12px;
+            font-size:.92rem;
+            letter-spacing:.5px;
+            text-align:center;
+            margin-bottom:18px;
+            font-weight:700;
+        }
+
+        .hidden{
+            display:none;
+        }
+
+        .cta-block{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:42px;
+            align-items:center;
+            margin-bottom:58px;
+        }
+
+        .cta-title{
+            font-size:clamp(1.8rem, 4vw, 3rem);
+            line-height:1.08;
+            margin:0 0 18px 0;
+            color:var(--gold-dark);
+        }
+
+        .cta-subtitle{
+            color:var(--muted);
+            line-height:1.8;
+            margin-bottom:28px;
+            font-size:.98rem;
+        }
+
+        .media-wrapper{
+            border:1px solid var(--border);
+            border-radius:16px;
+            overflow:hidden;
+            background:#fff;
+            box-shadow:var(--shadow);
+        }
+
+        .media-wrapper video,
+        .media-wrapper img{
+            width:100%;
+            display:block;
+            max-height:360px;
+            object-fit:cover;
+        }
+
+        .media-caption{
+            padding:16px 18px;
+            font-size:.8rem;
+            color:var(--muted);
+            letter-spacing:.8px;
+            text-align:center;
+            border-top:1px solid var(--border);
+            font-style:italic;
+        }
+
+        .strategic-quote{
+            border-left:5px solid var(--gold);
+            padding:28px 34px;
+            background:#fff;
+            border-radius:0 16px 16px 0;
+            margin:0;
+            box-shadow:var(--shadow);
+        }
+
+        .strategic-quote p{
+            font-size:clamp(1.25rem, 3vw, 1.9rem);
+            color:var(--text);
+            text-transform:uppercase;
+            letter-spacing:1.5px;
+            margin:0 0 10px 0;
+            font-weight:800;
+        }
+
+        .strategic-quote cite{
+            color:var(--gold-dark);
+            font-size:.88rem;
+            font-style:normal;
+            letter-spacing:.7px;
+        }
+
+        .whatsapp-btn{
+            position:fixed;
+            right:28px;
+            bottom:28px;
+            width:66px;
+            height:66px;
+            background:#25D366;
+            border-radius:50%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            box-shadow:0 15px 30px rgba(0,0,0,.18);
+            z-index:1000;
+            transition:all .25s ease;
+            border:1px solid rgba(255,255,255,.25);
+        }
+
+        .whatsapp-btn:hover{
+            transform:scale(1.08) rotate(8deg);
+            background:#1fa957;
+        }
+
+        .whatsapp-btn svg{
+            width:32px;
+            fill:#fff;
+        }
+
+        footer{
+            padding:74px 0 46px;
+            background:#fff;
+            border-top:1px solid var(--border);
+        }
+
+        .footer-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+            gap:34px;
+        }
+
+        .footer-heading{
+            margin-bottom:18px;
+            color:var(--gold-dark);
+        }
+
+        .footer-nav{
+            list-style:none;
+            margin:0;
+            padding:0;
+            line-height:2.2;
+        }
+
+        .footer-nav a{
+            color:var(--muted);
+            text-decoration:none;
+            transition:color .2s ease;
+        }
+
+        .footer-nav a:hover{
+            color:var(--gold-dark);
+        }
+
+        .footer-bottom{
+            text-align:center;
+            color:#777;
+            margin-top:50px;
+            padding-top:28px;
+            border-top:1px solid var(--border);
+            font-size:.9rem;
+        }
+
+        .footer-credit{
+            color:var(--gold-dark);
+            text-decoration:none;
+            font-weight:700;
+        }
+
+        @media (max-width: 980px){
+            .product-sheet{
+                grid-template-columns:1fr;
+                padding:28px;
+            }
+
+            .cta-block{
+                grid-template-columns:1fr;
+            }
+        }
+
+        @media (max-width: 768px){
+            #header{
+                padding:14px 0;
+            }
+
+            .menu-btn{
+                display:flex;
+            }
+
+            .nav-links{
+                position:fixed;
+                top:0;
+                right:-100%;
+                width:100%;
+                height:100vh;
+                background:rgba(255,255,255,.98);
+                display:flex;
+                flex-direction:column;
+                align-items:center;
+                justify-content:center;
+                gap:22px;
+                transition:all .3s ease;
+                box-shadow:-20px 0 40px rgba(0,0,0,.08);
+            }
+
+            .nav-links.active{
+                right:0;
+            }
+
+            .nav-links a{
+                font-size:1.1rem;
+            }
+
+            .hero{
+                padding-top:120px;
+            }
+
+            .hero-ctas{
+                flex-direction:column;
+            }
+
+            .btn, .btn-wa, .btn-submit{
+                width:100%;
+                text-align:center;
+            }
+
+            .tech-point{
+                flex-direction:column;
+            }
+
+            .localisation-band{
+                flex-direction:column;
+                gap:8px;
+                text-align:center;
+                letter-spacing:1px;
+            }
+
+            .strategic-quote{
+                padding:22px;
+            }
+
+            .whatsapp-btn{
+                right:16px;
+                bottom:16px;
+            }
+
+            .contact-form{
+                padding:24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div class="container nav">
+            <a href="index1.html" class="header-brand">
+                <img src="assets/images/logo.png" alt="WFEL – Woodfrom Ergonomic Lab" class="logo-img">
+                <div class="brand-name">
+                    woodfrom ergonomic lab
+                    <span>l'ingénierie de la posture</span>
+                </div>
+            </a>
+
+            <nav class="nav-links">
+                <a href="#accueil">Accueil</a>
+                <a href="#expertise">Expertise</a>
+                <a href="#institutions">Institutions</a>
+                <a href="#produit-phare">Produit Phare</a>
+                <a href="#contact">Contact</a>
+            </nav>
+
+            <div class="menu-btn" aria-label="Ouvrir le menu" role="button" tabindex="0">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="accueil" class="hero">
+            <div class="container hero-content">
+
+                <div class="brand-identity">
+                    <p class="brand-title">WOODFROM ERGONOMIC LAB</p>
+                    <p class="brand-founder">
+                        Fondateur &amp; Superviseur Technique :
+                        <strong>Ir Léonce A. Maheshe</strong>
+                        &mdash; <em>(ORDONNER C'EST DÉJÀ CONNAÎTRE)</em>
+                    </p>
+                    <p class="brand-slogan">L'INGENIERIE DE LA POSTURE AU SERVICE DE LA PERFORMANCE</p>
+                </div>
+
+                <h1 class="oswald hero-main-title">ORDONNER VOTRE ESPACE DE TRAVAIL C'EST DEJA MAITRISER VOTRE AVENIR</h1>
+
+                <p class="hero-concept">
+                    POURQUOI SACRIFIER VOTRE SANTE POUR VOTRE CARRIERE? NOS SOLUTIONS ERGONOMIQUES, CALCULEES ET CERTIFIEES PAR L'INGENIERIE CIVILE, CORRIGENT VOTRE POSTURE EN TEMPS REEL POUR UNE CONCENTRATION SANS LIMITES.
+                </p>
+
+                <div class="hero-tech-points">
+                    <div class="tech-point">
+                        <span class="tp-icon">📏</span>
+                        <div>
+                            <strong>Analyse des contraintes</strong>
+                            <p>Identification des tensions cervicales et lombaires pour prévenir l'inconfort et optimiser le bien-être.</p>
+                        </div>
+                    </div>
+
+                    <div class="tech-point">
+                        <span class="tp-icon">👁️</span>
+                        <div>
+                            <strong>Correction posturale</strong>
+                            <p>Alignement du regard grâce à l'ajustement de la hauteur de l'écran, favorisant une posture saine et confortable.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-formation">
+                    <span class="formation-badge">FORMATION &amp; EXPERTISE</span>
+                    <p>ETUDIANT à la Faculté des Technologies de l'ULPGL, je combine rigueur scientifique et approche pratique pour des solutions ergonomiques efficaces.</p>
+                </div>
+
+                <div class="hero-ctas">
+                    <a href="#contact" class="btn">OPTIMISER MON POSTE DE TRAVAIL</a>
+                    <a href="#expertise" class="btn btn-outline">Notre Génie</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="galerie" class="container section-pad border-top-glass">
+            <div class="section-header">
+                <h2 class="oswald" style="font-size:2.4rem;margin:0 0 10px 0;color:var(--text);">Échantillons de nos Réalisations</h2>
+                <p>Aperçu de l'excellence artisanale fusionnée à l'ingénierie ergonomique.</p>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="assets/images/produits/img-1.png" alt="Chaise Ergonomique Noire WFEL" loading="lazy">
+                    <div class="gallery-overlay"><span class="oswald">Chaise Ergonomique Noire</span></div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="assets/images/produits/img-2.png" alt="Organiseur en Noyer du Kivu WFEL" loading="lazy">
+                    <div class="gallery-overlay"><span class="oswald">Organiseur en Noyer du Kivu</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="expertise" class="section-pad-lg">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="oswald" style="font-size:3rem;color:var(--gold-dark);margin:0 0 10px 0;">L'Expertise Biomécanique</h2>
+                    <p>Analyse des contraintes physiologiques et optimisation structurelle pour une performance durable.</p>
+                </div>
+
+                <div class="grid-expertise">
+                    <div class="expertise-card">
+                        <div class="expertise-icon">📏</div>
+                        <h3>Analyse Posturale</h3>
+                        <p>Étude approfondie de la courbure rachidienne pour prévenir les troubles musculosquelettiques (TMS).</p>
+                    </div>
+
+                    <div class="expertise-card">
+                        <div class="expertise-icon">🏗️</div>
+                        <h3>RDM Appliquée</h3>
+                        <p>Calcul de la résistance des matériaux pour assurer la stabilité et la longévité de chaque structure.</p>
+                    </div>
+
+                    <div class="expertise-card">
+                        <div class="expertise-icon">🧬</div>
+                        <h3>Bio-conception</h3>
+                        <p>Matériaux naturels et techniques d'assemblage traditionnelles fusionnées à l'ingénierie moderne.</p>
+                    </div>
+                </div>
+
+                <div class="vision-block">
+                    <h3>La Vision de l'Ingénieur</h3>
+                    <p>L'Ir Léonce A. Maheshe applique les principes de la résistance des matériaux (RDM) à la conception de mobilier pour garantir une durabilité et une ergonomie sans faille. Chaque angle, chaque hauteur est calculé pour s'adapter à la morphologie humaine.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="institutions" class="section-pad-lg section-dark">
+            <div class="container">
+                <h2 class="oswald" style="font-size:3rem;color:var(--gold-dark);margin:0 0 10px 0;">Solutions Institutionnelles</h2>
+                <p style="max-width:820px;margin-bottom:42px;color:var(--muted);">L'ingénierie ergonomique au service des collectivités. Nous concevons des espaces capables de supporter un usage intensif tout en préservant la santé des usagers.</p>
+
+                <div class="grid-cards">
+                    <div class="inst-card">
+                        <div class="inst-img inst-img-1"></div>
+                        <h3>Éducation &amp; Recherche</h3>
+                        <p>Bancs et pupitres calculés pour la rectitude dorsale. Idéal pour les universités et complexes scolaires de Goma.</p>
+                    </div>
+
+                    <div class="inst-card">
+                        <div class="inst-img inst-img-2"></div>
+                        <h3>Espaces de Culte</h3>
+                        <p>Optimisation acoustique et confort d'assise pour les grandes assemblées. Une approche digne et durable.</p>
+                    </div>
+
+                    <div class="inst-card">
+                        <div class="inst-img inst-img-3"></div>
+                        <h3>Administrations Publiques</h3>
+                        <p>Stations de travail modulaires pour services administratifs, alliant prestige congolais et efficacité opérationnelle.</p>
+                    </div>
+                </div>
+
+                <div class="devis-block">
+                    <h2>Besoin d'un devis groupé ?</h2>
+                    <p>Nos ingénieurs se déplacent pour l'analyse structurelle de vos locaux.</p>
+                    <a href="https://wa.me/243961580228?text=Bonjour%20Ir%20LEONCE%2C%20Je%20souhaite%20obtenir%20des%20informations%20sur%20le%20support%20ALL%20IN%20ONE" class="btn" style="margin-top:18px;" target="_blank" rel="noopener">Demander un devis institutionnel</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="produit-phare" class="container section-pad-lg">
+            <div class="product-hero-tag">
+                <span>LIBERER VOS MAINS, RETROUVEZ VOTRE PRESTANCE</span>
+            </div>
+
+            <div class="product-sheet">
+                <div class="product-gallery">
+                    <div class="product-preview">
+                        <img src="assets/images/produits/img-1.png" alt="Station Intégrale ALL IN ONE WFEL" loading="lazy">
+                    </div>
+                </div>
+
+                <div class="product-info">
+                    <span class="product-label">L'EXCELLENCE CONGOLAISE</span>
+                    <h2 class="oswald product-name">STATION INTÉGRALE WFEL</h2>
+                    <p style="color:var(--muted);font-size:1.05rem;">Une solution complète de posture conçue pour les professionnels exigeants, sculptée dans le Noyer du Kivu avec une rigueur d'ingénieur.</p>
+
+                    <h4 class="specs-title">Spécifications de l'Ingénieur :</h4>
+                    <ul class="specs-list">
+                        <li><span>Structure</span><span>Pérennité Structurelle Garantie</span></li>
+                        <li><span>Matériau</span><span>Noyer du Kivu (Séchage Naturel)</span></li>
+                        <li><span>Ergonomie</span><span>Optimisation Biomécanique (15°)</span></li>
+                        <li><span>Dimensions</span><span>Modulable selon morphologie</span></li>
+                    </ul>
+
+                    <div class="b2b-block">
+                        <h4 class="oswald b2b-title">SERVICES INSTITUTIONNELS — OFFRES B2B</h4>
+                        <ul class="b2b-list">
+                            <li>🏢 Aménagement pour bureaux administratifs</li>
+                            <li>📚 Salles de professeurs</li>
+                            <li>⛪ Institutions religieuses</li>
+                        </ul>
+                        <p class="b2b-quote">« La santé du travailleur est le moteur de sa productivité »</p>
+                    </div>
+
+                    <a href="https://wa.me/243961580228?text=Bonjour%20Ir%20LEONCE%2C%20Je%20souhaite%20obtenir%20des%20informations%20sur%20le%20support%20ALL%20IN%20ONE" class="btn btn-wa" target="_blank" rel="noopener">📲 Commander via WhatsApp</a>
+                    <p class="wa-sub-note">Consultez l'ingénieur pour votre projet d'aménagement ou comander votre station ALL IN ONE et toute sorte de meuble.</p>
+                </div>
+            </div>
+
+            <div class="localisation-band">
+                <span>📍</span>
+                <span>LABORATOIRE ET ATELIER : VILLE DE GOMA, NORD KIVU, RDC.</span>
+            </div>
+        </section>
+
+        <section id="contact" class="section-pad-lg section-dark">
+            <div class="container">
+                <div class="contact-header">
+                    <h2 class="oswald" style="font-size:2.5rem;color:var(--gold-dark);margin:0 0 10px 0;">DEMANDE DE DEVIS OU COLLABORATION</h2>
+                    <p class="contact-sub">Canal pour <strong>LES DEMANDES ET DEVIS INSTITUTIONNELS</strong></p>
+                    <a href="mailto:leonceleon710@gmail.com" class="contact-email-link">leonceleon710@gmail.com</a>
+                </div>
+
+                <form id="mon-formulaire" class="contact-form" action="https://formsubmit.co/victortiktok243@gmail.com" method="POST">
+                    <div class="form-group">
+                        <label for="nom">Nom et Post-nom <span class="req">*</span></label>
+                        <input type="text" id="nom" name="nom" placeholder="Ex : Jean-Pierre Mutombo" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="organisation">Nom de l'Organisation / Institution <span class="req">*</span></label>
+                        <input type="text" id="organisation" name="organisation" placeholder="Ex : Université de Goma" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sujet">Sujet de la Sollicitation <span class="req">*</span></label>
+                        <textarea id="sujet" name="sujet" rows="5" placeholder="Décrivez votre besoin ou projet d'aménagement..." required></textarea>
+                    </div>
+
+                    <input type="hidden" name="_subject" value="Nouvelle demande WFEL">
+                    <input type="hidden" name="_captcha" value="false">
+
+                    <div id="form-success" class="form-success hidden">
+                        ✅ VOTRE MESSAGE A ÉTÉ TRANSMIS AU LABORATOIRE WFEL. L'INGÉNIEUR VOUS REVIENDRA SOUS PEU.
+                    </div>
+
+                    <button type="submit" id="submit-btn" class="btn btn-submit">TRANSMETTRE AU LABORATOIRE</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="cta" class="section-pad-lg">
+            <div class="container">
+                <div class="cta-block">
+                    <div class="cta-text">
+                        <h2 class="oswald cta-title">ORDONNER VOTRE ESPACE DE TRAVAIL C'EST DÉJÀ MAÎTRISER VOTRE AVENIR</h2>
+                        <p class="cta-subtitle">POURQUOI SACRIFIER VOTRE SANTÉ POUR VOTRE CARRIÈRE? NOS SOLUTIONS ERGONOMIQUES, CALCULEES ET CERTIFIEES PAR L'INGENIERIE CIVILE, CORRIGENT VOTRE POSTURE EN TEMPS RÉEL POUR UNE CONCENTRATION SANS LIMITES.</p>
+                        <a href="#contact" class="btn cta-btn">OPTIMISER MON POSTE DE TRAVAIL</a>
+                    </div>
+
+                    <div class="cta-media">
+                        <div class="media-wrapper">
+                            <video autoplay muted loop playsinline poster="assets/images/produits/img-1.png">
+                                <source src="assets/images/produits/video1.mp4" type="video/mp4">
+                                Votre navigateur ne supporte pas la vidéo.
+                            </video>
+                            <p class="media-caption">STATION ALL IN ONE , CONCEPTION CERTIFIEE PAR L'IR LEONCE A. MAHESHE| Exoertise ULPGL GOMA.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <blockquote class="strategic-quote">
+                    <p>« La sante du travailleur est le moteur de sa productivite »</p>
+                    <cite>IR. LEONCE A. MAHESHE| Ingénieur Civil et expert en Ergonomie et aménagement des espaces de travail</cite>
+                </blockquote>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-grid">
+            <div>
+                <a href="index1.html" class="header-brand" style="align-items:flex-start;">
+                    <img src="assets/images/logo.png" alt="WFEL Logo" class="logo-img">
+                    <div class="brand-name">
+                        woodfrom ergonomic lab
+                        <span>l'ingénierie de la posture</span>
+                    </div>
+                </a>
+                <p style="color:var(--muted);margin-top:18px;">L'ingénierie congolaise au service de votre bien-être au travail. Basé à Goma, Nord-Kivu.</p>
+            </div>
+
+            <div>
+                <h4 class="oswald footer-heading">Navigation</h4>
+                <ul class="footer-nav">
+                    <li><a href="#expertise">Notre Expertise</a></li>
+                    <li><a href="#institutions">Solutions Institutionnelles</a></li>
+                    <li><a href="#produit-phare">Produit Phare</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="oswald footer-heading">Contact</h4>
+                <p style="color:var(--muted);">
+                    Goma, RD Congo<br>
+                    Tél: +243 961 580 228<br>
+                    Tél: +243 800 273 511<br>
+                    Email: leonceleon710@gmail.com
+                </p>
+                <p style="color:var(--muted);margin-top:15px;font-size:0.85rem;">LABORATOIRE ET ATELIER : VILLE DE GOMA, NORD KIVU, RDC.</p>
+            </div>
+        </div>
+
+        <div class="container footer-bottom">
+            <p>&copy; 2026 WOODFROM ERGONOMIC LAB. Tous droits réservés.</p>
+            <p style="margin-top:10px;">Propulsé par <a href="mailto:victorakokwa2004@gmail.com" class="footer-credit">Victor Tesla</a></p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/243961580228?text=Bonjour%20Ir%20LEONCE%2C%20Je%20souhaite%20obtenir%20des%20informations%20sur%20le%20support%20ALL%20IN%20ONE"
+       class="whatsapp-btn"
+       target="_blank"
+       rel="noopener noreferrer"
+       title="Contacter via WhatsApp"
+       aria-label="Contacter WFEL via WhatsApp">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12.031 6.172c-2.32 0-4.525.903-6.163 2.541a8.678 8.678 0 0 0-2.54 6.163c0 2.321.904 4.525 2.542 6.162 1.638 1.638 3.842 2.541 6.162 2.541 2.322 0 4.527-.903 6.164-2.541a8.682 8.682 0 0 0 2.54-6.162c0-2.321-.903-4.526-2.541-6.163a8.676 8.676 0 0 0-6.164-2.541zM12 21.015a7.015 7.015 0 1 1 0-14.03 7.015 7.015 0 0 1 0 14.03zm3.76-4.555c-.2-.1-.4-.191-.8-.392-.4-.201-.6-.3-.799-.4s-.3-.2-.5-.1c-.2.1-.4.5-.5.6s-.2.2-.4.1c-.2-.112-.8-.4-1.2-.8-.4-.4-.6-.7-.7-.9s-.1-.3 0-.4c.1-.1.2-.2.3-.3s.1-.2.2-.3.1-.2 0-.3c-.1-.1-.5-1.2-.7-1.7-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.5.1-.7.4-.2.3-.9.9-.9 2.2 0 1.3.9 2.5 1.1 2.7l.1.1c.4.6 1.7 2.6 4.1 3.5.6.2 1.1.4 1.5.5.6.2 1.1.2 1.5.1s.8-.3 1-.6c.2-.3.2-.6.1-.7z"></path>
+        </svg>
+    </a>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const menuBtn = document.querySelector(".menu-btn");
+            const navLinks = document.querySelector(".nav-links");
+            const header = document.getElementById("header");
+            const form = document.getElementById("mon-formulaire");
+            const success = document.getElementById("form-success");
+
+            if (menuBtn && navLinks) {
+                menuBtn.addEventListener("click", () => {
+                    menuBtn.classList.toggle("open");
+                    navLinks.classList.toggle("active");
+                });
+
+                menuBtn.addEventListener("keydown", (e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        menuBtn.click();
+                    }
+                });
+
+                navLinks.querySelectorAll("a").forEach(link => {
+                    link.addEventListener("click", () => {
+                        navLinks.classList.remove("active");
+                        menuBtn.classList.remove("open");
+                    });
+                });
+            }
+
+            window.addEventListener("scroll", () => {
+                if (window.scrollY > 40) {
+                    header.classList.add("scrolled");
+                } else {
+                    header.classList.remove("scrolled");
+                }
+            });
+
+            if (form) {
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault(); 
+                    
+                    const submitBtn = document.getElementById('submit-btn');
+                    const originalText = submitBtn.innerText;
+                    submitBtn.innerText = "ENVOI EN COURS...";
+                    submitBtn.disabled = true;
+
+                    const formData = new FormData(form);
+
+                    fetch(form.action, {
+                        method: form.method,
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json' 
+                        }
+                    })
+                    .then(response => {
+                        submitBtn.innerText = originalText;
+                        submitBtn.disabled = false;
+                        
+                        if (response.ok) {
+                            success.classList.remove("hidden");
+                            form.reset(); 
+                            setTimeout(() => {
+                                success.classList.add("hidden");
+                            }, 8000);
+                        } else {
+                            alert("Une erreur s'est produite lors de l'envoi.");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Erreur:", error);
+                        submitBtn.innerText = originalText;
+                        submitBtn.disabled = false;
+                        alert("Erreur de connexion.");
+                    });
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
